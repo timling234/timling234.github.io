@@ -693,20 +693,6 @@ small {
   }
 }
 
-.profile-initials {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 112px;
-  height: 112px;
-  border-radius: 50%;
-  background: #00796b;
-  color: #fff;
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin: 0 auto;
-}
-
 .intro-content { margin-left: 10%; margin-top: 50px; }
 .intro-subtitle { color: #fff; }
 .intro-subtitle .typing { color: #80cbc4; }
