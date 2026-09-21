@@ -11,6 +11,7 @@
   <!-- Font Awesome Icon - CSS-->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
   <!-- Custom Styles-->
+  <!-- Activity 3 theme and CSS-generated circuit background are defined here -->
   <link rel="stylesheet" href="assets/css/style.css" />
   <title>Tim Ling | Software Developer</title>
 
@@ -198,16 +199,50 @@
     <section id="experience" class="section scrollspy">
       <h3 class="page-title white-text teal">Experience</h3>
       <div class="container">
-        <div class="card"><div class="card-content">
-          <span class="card-title teal-text">Astera Labs</span>
-          <div class="role brown-text text-darken-2">Design Verification Intern · May 2025 – Aug 2026</div>
-          <ul class="browser-default"><li>Worked on gate-level simulation sign-off and tape-out across three chips.</li><li>Owned UVM test cases and added new tests using SystemVerilog, Verilog, Python, C, and shell scripting.</li><li>Automated regression monitoring, log analysis, and waveform review to speed up the verification workflow.</li></ul>
-        </div></div>
-        <div class="card"><div class="card-content">
-          <span class="card-title teal-text">University Health Network</span>
-          <div class="role brown-text text-darken-2">Web Application Developer · Mar 2023 – Sep 2023</div>
-          <ul class="browser-default"><li>Helped transfer medical learning content from a website into an application.</li><li>Improved search performance by reorganizing data structures and conducted usability testing to identify interface issues.</li></ul>
-        </div></div>
+
+        <div class="card experience-card">
+          <div class="card-content">
+            <div class="row experience-heading">
+              <div class="col s12 m2 experience-logo-wrap">
+                <div class="company-mark">AL</div>
+              </div>
+              <div class="col s12 m10">
+                <span class="card-title teal-text">Astera Labs</span>
+                <div class="role">Design Verification Intern</div>
+              </div>
+            </div>
+            <ul class="browser-default">
+              <li>Worked on gate-level simulation sign-off and tape-out across three chips.</li>
+              <li>Owned UVM test cases and added new tests using SystemVerilog, Verilog, Python, C, and shell scripting.</li>
+              <li>Automated regression monitoring, log analysis, and waveform review to speed up the verification workflow.</li>
+            </ul>
+          </div>
+          <div class="card-action experience-footer">
+            <span>May 2025 – Aug 2026 · Markham, Ontario</span>
+          </div>
+        </div>
+
+        <div class="card experience-card">
+          <div class="card-content">
+            <div class="row experience-heading">
+              <div class="col s12 m2 experience-logo-wrap">
+                <div class="company-mark company-mark-uhn">UHN</div>
+              </div>
+              <div class="col s12 m10">
+                <span class="card-title teal-text">University Health Network</span>
+                <div class="role">Web Application Developer</div>
+              </div>
+            </div>
+            <ul class="browser-default">
+              <li>Helped transfer medical learning content from a website into an application.</li>
+              <li>Improved search performance by reorganizing data structures and conducted usability testing to identify interface issues.</li>
+            </ul>
+          </div>
+          <div class="card-action experience-footer">
+            <span>Mar 2023 – Sep 2023 · Toronto, Ontario</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -216,9 +251,48 @@
     <section id="projects" class="section scrollspy">
       <h3 class="page-title white-text teal">Projects</h3>
       <div class="container">
-        <div class="card"><div class="card-content"><span class="card-title teal-text">FPGA Klotski Game</span><p>Built a pathfinding Klotski game using an FPGA system with Nios II and ARMv7. Connected VGA output and PS/2 keyboard and mouse input. Developed with Intel and the University of Toronto, Sep 2023 – Apr 2024.</p></div></div>
-        <div class="card"><div class="card-content"><span class="card-title teal-text">Global Washroom Locator</span><p>Led a three-person team to create a geographic application in C++ using OpenStreetMap data, GTK, EZGL, and libcurl. Developed with Google and the University of Toronto, Jan – Jun 2024.</p></div></div>
-        <div class="card"><div class="card-content"><span class="card-title teal-text">Toronto Population Analysis</span><p>Analyzed population data with MySQL on Google Cloud, filtered CSV data, and visualized annual growth in a MATLAB and SQL dashboard. Developed with Google, the City of Toronto, and the Government of Ontario, Nov 2022 – Mar 2023.</p></div></div>
+        <div class="row project-grid">
+
+          <div class="col s12 m6 l4">
+            <div class="card project-card">
+              <div class="card-image">
+                <img src="assets/img/project-AI.jpg" alt="Technology illustration for FPGA Klotski Game">
+              </div>
+              <div class="card-content">
+                <span class="card-title teal-text">FPGA Klotski Game</span>
+                <p>Built a pathfinding Klotski game using an FPGA system with Nios II and ARMv7. Connected VGA output and PS/2 keyboard and mouse input.</p>
+              </div>
+              <div class="card-action project-meta">Intel + University of Toronto · Sep 2023 – Apr 2024</div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l4">
+            <div class="card project-card">
+              <div class="card-image">
+                <img src="assets/img/project-python-django2.jpg" alt="Web application illustration for Global Washroom Locator">
+              </div>
+              <div class="card-content">
+                <span class="card-title teal-text">Global Washroom Locator</span>
+                <p>Led a three-person team to create a geographic application in C++ using OpenStreetMap data, GTK, EZGL, and libcurl.</p>
+              </div>
+              <div class="card-action project-meta">Google + University of Toronto · Jan – Jun 2024</div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l4">
+            <div class="card project-card">
+              <div class="card-image">
+                <img src="assets/img/project-python-Data-Science_Watermarked.webp" alt="Data analysis illustration for Toronto Population Analysis">
+              </div>
+              <div class="card-content">
+                <span class="card-title teal-text">Toronto Population Analysis</span>
+                <p>Analyzed population data with MySQL on Google Cloud, filtered CSV data, and visualized annual growth in a MATLAB and SQL dashboard.</p>
+              </div>
+              <div class="card-action project-meta">Toronto + Ontario open data · Nov 2022 – Mar 2023</div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -227,9 +301,51 @@
     <section id="skills" class="section scrollspy">
       <h3 class="page-title white-text teal">Skills</h3>
       <div class="container">
-        <div class="card"><div class="card-content"><h4 class="brown-text light">Programming</h4><p>C, C++, Python, Java, JavaScript, TypeScript, HTML, SystemVerilog, Verilog, Swift, shell scripting</p></div></div>
-        <div class="card"><div class="card-content"><h4 class="brown-text light">Hardware and development</h4><p>FPGA development, UVM, Synopsys VCS, Verdi, DVE, Git, VS Code, CLion, Android Studio, Unity</p></div></div>
-        <div class="card"><div class="card-content"><h4 class="brown-text light">Data and design</h4><p>SQL, MySQL, Google Cloud, MATLAB, GIS, Figma</p></div></div>
+
+        <div class="card skills-card">
+          <div class="card-content">
+            <h4>Languages and Databases</h4>
+            <div class="skill-logo-grid">
+              <div class="skill-logo-item"><img src="assets/img/python-logo-1.png" alt="Python logo"><span>Python</span></div>
+              <div class="skill-logo-item"><img src="assets/img/javascript.png" alt="JavaScript logo"><span>JavaScript</span></div>
+              <div class="skill-logo-item"><img src="assets/img/html5.png" alt="HTML5 logo"><span>HTML</span></div>
+              <div class="skill-logo-item"><img src="assets/img/mysql-logo-1.png" alt="MySQL logo"><span>MySQL</span></div>
+              <div class="skill-logo-item"><img src="assets/img/shell-logo-1.png" alt="Shell logo"><span>Shell</span></div>
+            </div>
+            <div class="skill-chips">
+              <span>C</span><span>C++</span><span>Java</span><span>TypeScript</span>
+              <span>SystemVerilog</span><span>Verilog</span><span>Swift</span><span>SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card skills-card">
+          <div class="card-content">
+            <h4>Hardware and Development</h4>
+            <div class="skill-logo-grid compact">
+              <div class="skill-logo-item"><img src="assets/img/git.png" alt="Git logo"><span>Git</span></div>
+              <div class="skill-logo-item"><img src="assets/img/github.png" alt="GitHub logo"><span>GitHub</span></div>
+            </div>
+            <div class="skill-chips">
+              <span>FPGA Development</span><span>UVM</span><span>Synopsys VCS</span>
+              <span>Verdi</span><span>DVE</span><span>VS Code</span><span>CLion</span>
+              <span>Android Studio</span><span>Unity</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card skills-card">
+          <div class="card-content">
+            <h4>Data and Design</h4>
+            <div class="skill-logo-grid compact">
+              <div class="skill-logo-item"><img src="assets/img/mysql-logo-1.png" alt="MySQL logo"><span>MySQL</span></div>
+            </div>
+            <div class="skill-chips">
+              <span>Google Cloud</span><span>MATLAB</span><span>GIS</span><span>Figma</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
