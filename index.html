@@ -66,7 +66,11 @@
             class="mdi-action-trending-up small"></i><span>Experience</span></a>
       </li>
 
-      <li class="bold">
+            <li class="bold">
+        <a aria-label="Navigate to the Places Travelled section" href="#places" class="waves-effect waves-dark teal-text"><i
+            class="mdi-maps-place small"></i><span>Places Travelled</span></a>
+      </li>
+<li class="bold">
         <!-- mdi-av-web small
              mdi-av-my-library-books small-->
         <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
@@ -147,7 +151,11 @@
             class="mdi-action-assessment small"></i><span>Skills</span></a>
       </li>
 
-      <li class="bold">
+            <li class="bold">
+        <a aria-label="Navigate to the Places Travelled section" href="#places" class="waves-effect waves-dark teal-text"><i
+            class="mdi-maps-place small"></i><span>Places Travelled</span></a>
+      </li>
+<li class="bold">
         <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
             class="mdi-social-school small"></i><span>Education</span></a>
       </li>
@@ -344,6 +352,123 @@
               <span>Google Cloud</span><span>MATLAB</span><span>GIS</span><span>Figma</span>
             </div>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- Sixth Section: Places Travelled - Activity 4 -->
+    <section id="places" class="section scrollspy">
+      <h3 class="page-title white-text teal">Places Travelled</h3>
+      <div class="container travel-container">
+
+        <div class="travel-summary">
+          <div>
+            <p class="travel-eyebrow">MY TRAVEL FOOTPRINT</p>
+            <h4>A growing footprint across Asia and North America.</h4>
+            <p class="travel-intro">From East Asia to Canada and California — a visual record of places that are part of my journey.</p>
+          </div>
+          <div class="travel-stats" aria-label="Travel statistics">
+            <div><strong>26</strong><span>Places</span></div>
+            <div><strong>6</strong><span>Countries / Regions</span></div>
+            <div><strong>2</strong><span>Continents</span></div>
+          </div>
+        </div>
+
+        <div class="footprint-card">
+          <div class="footprint-map" role="img" aria-label="Stylized world map showing Shanghai, Beijing, Toronto and Vancouver">
+            <div class="map-grid"></div>
+
+            <!-- Decorative continent silhouettes: CSS/SVG, no raster map asset required. -->
+            <svg class="world-silhouette" viewBox="0 0 1000 470" aria-hidden="true">
+              <g>
+                <path d="M70 104 L119 69 L184 64 L223 83 L255 75 L287 102 L276 133 L245 144 L231 171 L198 179 L175 207 L142 199 L126 172 L94 161 L72 135 Z"/>
+                <path d="M217 215 L250 229 L268 265 L260 302 L276 338 L257 390 L232 414 L217 376 L204 335 L187 302 L191 263 Z"/>
+                <path d="M433 88 L480 64 L532 73 L560 96 L600 91 L632 111 L674 101 L718 116 L754 103 L810 122 L847 151 L829 176 L785 181 L759 206 L720 205 L690 230 L649 217 L623 188 L586 183 L555 159 L520 163 L490 145 L454 151 L425 128 Z"/>
+                <path d="M510 183 L552 195 L580 224 L588 266 L570 306 L552 355 L519 380 L492 344 L476 303 L464 258 L475 217 Z"/>
+                <path d="M815 319 L855 300 L902 312 L925 338 L902 366 L860 371 L827 350 Z"/>
+                <path d="M883 172 L900 160 L918 169 L911 190 L893 193 Z"/>
+              </g>
+            </svg>
+
+            <div class="route route-canada"></div>
+            <div class="route route-china"></div>
+
+            <!-- North America -->
+            <button class="map-marker vancouver" type="button" aria-label="Vancouver, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Vancouver</b><small>Canada</small></span></button>
+            <button class="map-marker calgary" type="button" aria-label="Calgary, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Calgary</b><small>Canada</small></span></button>
+            <button class="map-marker banff" type="button" aria-label="Banff, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Banff</b><small>Canada</small></span></button>
+            <button class="map-marker toronto" type="button" aria-label="Toronto, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Toronto</b><small>Canada</small></span></button>
+            <button class="map-marker ottawa" type="button" aria-label="Ottawa, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Ottawa</b><small>Canada</small></span></button>
+            <button class="map-marker montreal" type="button" aria-label="Montreal, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Montreal</b><small>Canada</small></span></button>
+            <button class="map-marker quebec" type="button" aria-label="Quebec City, Canada"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Quebec City</b><small>Canada</small></span></button>
+            <button class="map-marker sanfrancisco" type="button" aria-label="San Francisco, USA"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>San Francisco</b><small>USA</small></span></button>
+            <button class="map-marker sanjose" type="button" aria-label="San Jose, USA"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>San Jose</b><small>USA</small></span></button>
+
+            <!-- East / Southeast Asia -->
+            <button class="map-marker beijing" type="button" aria-label="Beijing, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Beijing</b><small>China</small></span></button>
+            <button class="map-marker zhengzhou" type="button" aria-label="Zhengzhou, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Zhengzhou</b><small>China</small></span></button>
+            <button class="map-marker nanjing" type="button" aria-label="Nanjing, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Nanjing</b><small>China</small></span></button>
+            <button class="map-marker wuxi" type="button" aria-label="Wuxi, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Wuxi</b><small>China</small></span></button>
+            <button class="map-marker suzhou" type="button" aria-label="Suzhou, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Suzhou</b><small>China</small></span></button>
+            <button class="map-marker shanghai" type="button" aria-label="Shanghai, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Shanghai</b><small>China</small></span></button>
+            <button class="map-marker hangzhou" type="button" aria-label="Hangzhou, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Hangzhou</b><small>China</small></span></button>
+            <button class="map-marker ningbo" type="button" aria-label="Ningbo, China"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Ningbo</b><small>China</small></span></button>
+            <button class="map-marker hongkong" type="button" aria-label="Hong Kong"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Hong Kong</b><small>China</small></span></button>
+            <button class="map-marker macau" type="button" aria-label="Macau"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Macau</b><small>China</small></span></button>
+            <button class="map-marker taiwan" type="button" aria-label="Taiwan"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Taiwan</b><small>East Asia</small></span></button>
+            <button class="map-marker seoul" type="button" aria-label="Seoul, South Korea"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Seoul</b><small>South Korea</small></span></button>
+            <button class="map-marker jeju" type="button" aria-label="Jeju Island, South Korea"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Jeju Island</b><small>South Korea</small></span></button>
+            <button class="map-marker tokyo" type="button" aria-label="Tokyo, Japan"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Tokyo</b><small>Japan</small></span></button>
+            <button class="map-marker nagoya" type="button" aria-label="Nagoya, Japan"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Nagoya</b><small>Japan</small></span></button>
+            <button class="map-marker osaka" type="button" aria-label="Osaka, Japan"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Osaka</b><small>Japan</small></span></button>
+            <button class="map-marker bangkok" type="button" aria-label="Bangkok, Thailand"><span class="marker-pulse"></span><span class="marker-dot"></span><span class="marker-label"><b>Bangkok</b><small>Thailand</small></span></button>
+
+            <div class="map-caption">
+              <span class="caption-dot"></span>
+              <span>Travel footprint</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="travel-region-grid">
+          <article class="travel-region">
+            <span class="region-number">01</span>
+            <h5>China</h5>
+            <p>Shanghai · Beijing · Zhengzhou · Suzhou · Hangzhou · Hong Kong · Macau · Wuxi · Nanjing · Ningbo</p>
+          </article>
+          <article class="travel-region">
+            <span class="region-number">02</span>
+            <h5>East &amp; Southeast Asia</h5>
+            <p>Taiwan · Seoul · Jeju Island · Osaka · Tokyo · Nagoya · Bangkok</p>
+          </article>
+          <article class="travel-region">
+            <span class="region-number">03</span>
+            <h5>Canada</h5>
+            <p>Toronto · Vancouver · Montreal · Ottawa · Banff · Quebec City · Calgary</p>
+          </article>
+          <article class="travel-region">
+            <span class="region-number">04</span>
+            <h5>United States</h5>
+            <p>San Jose · San Francisco</p>
+          </article>
+        </div>
+
+        <div class="google-map-card">
+          <div class="google-map-copy">
+            <p class="travel-eyebrow">GOOGLE MAPS</p>
+            <h4>Explore the footprint</h4>
+            <p>The embedded map provides an interactive geographic view for the Places Travelled activity.</p>
+          </div>
+          <iframe
+            title="Google Map showing Toronto, Canada"
+            src="https://www.google.com/maps?q=Toronto%2C%20Canada&amp;z=3&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
         </div>
 
       </div>
