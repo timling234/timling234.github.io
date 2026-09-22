@@ -119,6 +119,14 @@
         <a aria-label="Navigate to Tim Ling's resume summary" href="#resume"
           class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>
       </li>
+
+      <!-- Activity 6: Language selector -->
+      <li class="language-selector">
+        <button id="lang-en" class="lang-btn active" type="button">EN</button>
+        <span>|</span>
+        <button id="lang-zh" class="lang-btn" type="button">中文</button>
+      </li>
+
     </ul>
   </nav>
 
@@ -259,52 +267,28 @@
     <!-- Fourth Section: Projects -->
     <section id="projects" class="section scrollspy">
       <h3 class="page-title white-text teal">Projects</h3>
+
       <div class="container">
-        <div class="row project-grid">
 
-          <div class="col s12 m6 l4">
-            <div class="card project-card">
-              <div class="card-image">
-                <img src="assets/img/project-AI.jpg" alt="Technology illustration for FPGA Klotski Game">
-              </div>
-              <div class="card-content">
-                <span class="card-title teal-text">FPGA Klotski Game</span>
-                <p>Built a pathfinding Klotski game using an FPGA system with Nios II and ARMv7. Connected VGA output and PS/2 keyboard and mouse input.</p>
-              </div>
-              <div class="card-action project-meta">Intel + University of Toronto · Sep 2023 – Apr 2024</div>
-            </div>
-          </div>
+        <!--
+          Activity 5:
+          Project cards are dynamically generated with JavaScript.
+        -->
+        <div id="project-container" class="row project-grid"></div>
 
-          <div class="col s12 m6 l4">
-            <div class="card project-card">
-              <div class="card-image">
-                <img src="assets/img/project-python-django2.jpg" alt="Web application illustration for Global Washroom Locator">
-              </div>
-              <div class="card-content">
-                <span class="card-title teal-text">Global Washroom Locator</span>
-                <p>Led a three-person team to create a geographic application in C++ using OpenStreetMap data, GTK, EZGL, and libcurl.</p>
-              </div>
-              <div class="card-action project-meta">Google + University of Toronto · Jan – Jun 2024</div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4">
-            <div class="card project-card">
-              <div class="card-image">
-                <img src="assets/img/project-python-Data-Science_Watermarked.webp" alt="Data analysis illustration for Toronto Population Analysis">
-              </div>
-              <div class="card-content">
-                <span class="card-title teal-text">Toronto Population Analysis</span>
-                <p>Analyzed population data with MySQL on Google Cloud, filtered CSV data, and visualized annual growth in a MATLAB and SQL dashboard.</p>
-              </div>
-              <div class="card-action project-meta">Toronto + Ontario open data · Nov 2022 – Mar 2023</div>
-            </div>
-          </div>
-
+        <div style="text-align: center; margin: 10px 0 50px;">
+          <button
+            id="load-more-projects"
+            class="btn waves-effect waves-light"
+            type="button"
+            style="background-color: #2563eb;"
+          >
+            Load More
+          </button>
         </div>
+
       </div>
     </section>
-
 
     <!-- Fifth Section: Skills -->
     <section id="skills" class="section scrollspy">
@@ -526,6 +510,36 @@
         ["Bangkok","Thailand",13.7563,100.5018,"Thailand's capital is a vivid mix of temples, river life, markets, contemporary malls, street food, and dense tropical urban energy.","assets/img/travel/bangkok.jpg"]
       ];
 
+      // Activity 6: bilingual text for all travel locations.
+      const placeTranslations = {
+        "Vancouver": { zh: ["温哥华", "加拿大", "一座依山傍海的太平洋沿岸城市，以户外生活、多元社区和优美海滨景观而闻名。"] },
+        "Calgary": { zh: ["卡尔加里", "加拿大", "阿尔伯塔省快速发展的城市，邻近落基山脉，以西部文化、能源产业和便捷的山地旅行而闻名。"] },
+        "Banff": { zh: ["班夫", "加拿大", "位于班夫国家公园内的山城，四周环绕着碧蓝湖泊和高山，是加拿大最具代表性的自然景观之一。"] },
+        "Toronto": { zh: ["多伦多", "加拿大", "加拿大最大的城市，也是安大略湖畔的多元文化中心，以不同社区、城市天际线、大学和美食而闻名。"] },
+        "Ottawa": { zh: ["渥太华", "加拿大", "加拿大首都，坐落于渥太华河沿岸，以国会山、国家博物馆和里多运河而闻名。"] },
+        "Montreal": { zh: ["蒙特利尔", "加拿大", "一座双语城市，融合历史建筑、节庆、大学、美食与当代文化。"] },
+        "Quebec City": { zh: ["魁北克市", "加拿大", "俯瞰圣劳伦斯河的历史城墙城市，以魁北克老城和浓厚的法语文化传统闻名。"] },
+        "San Francisco": { zh: ["旧金山", "美国", "一座位于湾区的山城，以金门大桥、缆车、滨水社区以及重要的科技生态系统闻名。"] },
+        "San Jose": { zh: ["圣何塞", "美国", "硅谷最大的城市，周边聚集了众多塑造现代计算技术的公司和研究社区。"] },
+        "Beijing": { zh: ["北京", "中国", "中国首都，将故宫、天坛等历史古迹与规模庞大的现代都市融为一体。"] },
+        "Zhengzhou": { zh: ["郑州", "中国", "中国中部的重要交通枢纽和河南省省会，与中国早期历史有着深厚联系。"] },
+        "Nanjing": { zh: ["南京", "中国", "长江沿岸的历史古都，以古城墙、大学、博物馆和林荫大道而闻名。"] },
+        "Wuxi": { zh: ["无锡", "中国", "位于太湖之滨的江苏城市，以湖畔风光、工业以及长三角核心区位而闻名。"] },
+        "Suzhou": { zh: ["苏州", "中国", "以古典园林、运河和水乡闻名，同时也是现代长三角经济的重要组成部分。"] },
+        "Shanghai": { zh: ["上海", "中国", "长江入海口的国际大都市，以外滩、浦东天际线、繁华都市生活和国际化历史闻名。"] },
+        "Hangzhou": { zh: ["杭州", "中国", "浙江省省会，以西湖闻名，并将传统山水文化与现代科技产业相结合。"] },
+        "Ningbo": { zh: ["宁波", "中国", "浙江历史悠久的港口城市，拥有深厚海洋传统以及世界最繁忙的现代港口群之一。"] },
+        "Hong Kong": { zh: ["香港", "中国", "一座高密度海港城市，山地、岛屿、高楼社区、徒步路线与国际化文化在这里交汇。"] },
+        "Macau": { zh: ["澳门", "中国", "珠江三角洲的一座紧凑城市，拥有葡萄牙风格历史建筑和独特的多元文化传统。"] },
+        "Taipei": { zh: ["台北", "中国", "充满活力的城市，以夜市、山地景观、科技产业、寺庙和丰富美食文化而闻名。"] },
+        "Seoul": { zh: ["首尔", "韩国", "韩国首都，将宫殿与传统街区同现代设计、科技和流行文化融合在一起。"] },
+        "Jeju Island": { zh: ["济州岛", "韩国", "位于朝鲜半岛以南的火山岛，以汉拿山、熔岩地貌、海岸公路和独特地方文化闻名。"] },
+        "Tokyo": { zh: ["东京", "日本", "日本规模庞大的首都都市圈，融合高度互联的城区、美食与设计文化、历史景点以及持续创新。"] },
+        "Nagoya": { zh: ["名古屋", "日本", "日本中部的重要工业城市，拥有深厚制造业传统、名古屋城以及特色地方美食。"] },
+        "Osaka": { zh: ["大阪", "日本", "关西地区的重要城市，以充满活力的街头生活、美食、商业以及通往京都、神户和奈良的便利交通闻名。"] },
+        "Bangkok": { zh: ["曼谷", "泰国", "泰国首都，将寺庙、河畔生活、市场、现代商场、街头美食和热带都市活力融为一体。"] }
+      };
+
       const map = L.map("travelLeafletMap", {
         zoomControl: true,
         minZoom: 2,
@@ -591,16 +605,32 @@
           marker.setIcon(icon(name === selectedName));
           marker.setZIndexOffset(name === selectedName ? 1000 : 0);
         });
-        document.getElementById("placeDetailCity").textContent = p[0];
-        document.getElementById("placeDetailCountry").textContent = p[1];
-        document.getElementById("placeDetailText").textContent = p[4];
+        const language = window.currentLanguage || "en";
+        const zhPlace = placeTranslations[p[0]] && placeTranslations[p[0]].zh;
+        document.getElementById("placeDetailCity").textContent =
+          language === "zh" && zhPlace ? zhPlace[0] : p[0];
+        document.getElementById("placeDetailCountry").textContent =
+          language === "zh" && zhPlace ? zhPlace[1] : p[1];
+        document.getElementById("placeDetailText").textContent =
+          language === "zh" && zhPlace ? zhPlace[2] : p[4];
+
+        const detailTags = document.querySelectorAll("#placeDetail .detail-tags span");
+        const tagText = language === "zh"
+          ? ["历史", "文化", "美食", "建筑"]
+          : ["History", "Culture", "Food", "Architecture"];
+        detailTags.forEach((tag, index) => {
+          if (tagText[index]) tag.textContent = tagText[index];
+        });
+
         const img = document.getElementById("placeDetailImage");
         const photoWrap = img.closest(".place-photo-wrap");
         photoWrap.classList.remove("photo-missing");
         img.onerror = () => photoWrap.classList.add("photo-missing");
         img.onload = () => photoWrap.classList.remove("photo-missing");
         img.src = p[5];
-        img.alt = "Representative view of " + p[0];
+        img.alt = language === "zh" && zhPlace
+          ? zhPlace[0] + "代表性景观"
+          : "Representative view of " + p[0];
 
         const detail = document.getElementById("placeDetail");
         detail.classList.add("open");
@@ -615,6 +645,13 @@
       });
 
       const byName = Object.fromEntries(places.map(p => [p[0],p]));
+
+      // Let the language selector immediately refresh the currently open map card.
+      window.refreshSelectedTravelPlace = function () {
+        if (selectedName && byName[selectedName]) {
+          selectPlace(byName[selectedName]);
+        }
+      };
       const routeGroups = [
         ["Vancouver","Calgary","Banff","San Francisco","San Jose","Toronto","Ottawa","Montreal","Quebec City"],
         ["Beijing","Zhengzhou","Nanjing","Wuxi","Suzhou","Shanghai","Hangzhou","Ningbo","Hong Kong","Macau","Taipei"],
@@ -699,6 +736,676 @@
       });
     })();
   </script>
+
+  <!-- Activity 6: English / Chinese Language Selector -->
+  <script>
+  const translations = {
+    en: {
+      nav: [
+        "About", "Experience", "Projects", "Skills",
+        "Places Travelled", "Education", "Contact", "Resume"
+      ],
+
+      titles: {
+        about: "About",
+        experience: "Experience",
+        projects: "Projects",
+        skills: "Skills",
+        places: "Places Travelled",
+        education: "Education",
+        resume: "Resume",
+        contact: "Contact"
+      },
+
+      heroDescription:
+        "Fourth-year Computer Engineering student at the University of Toronto. I enjoy building software, working with hardware, and playing golf.",
+      readMore: "Read More",
+      contactMe: "Contact Me",
+
+      about: [
+        "I'm Tim, a fourth-year Computer Engineering student at the University of Toronto, pursuing minors in Artificial Intelligence and Business. My interests span software development, digital design verification, data analysis, and building tools that make work easier.",
+        "Outside engineering, I enjoy playing golf. I expect to graduate in June 2027."
+      ],
+
+      experience: {
+        roles: [
+          "Design Verification Intern",
+          "Web Application Developer"
+        ],
+        bullets: [
+          [
+            "Worked on gate-level simulation sign-off and tape-out across three chips.",
+            "Owned UVM test cases and added new tests using SystemVerilog, Verilog, Python, C, and shell scripting.",
+            "Automated regression monitoring, log analysis, and waveform review to speed up the verification workflow."
+          ],
+          [
+            "Helped transfer medical learning content from a website into an application.",
+            "Improved search performance by reorganizing data structures and conducted usability testing to identify interface issues."
+          ]
+        ],
+        footers: [
+          "May 2025 – Aug 2026 · Markham, Ontario",
+          "Mar 2023 – Sep 2023 · Toronto, Ontario"
+        ]
+      },
+
+      skills: [
+        "Languages and Databases",
+        "Hardware and Development",
+        "Data and Design"
+      ],
+
+      travel: {
+        eyebrow: "MY TRAVEL FOOTPRINT",
+        heading: "A growing footprint across Asia and North America.",
+        description:
+          "From East Asia to Canada and California — a visual record of places that are part of my journey.",
+        places: "PLACES",
+        countries: "COUNTRIES / REGIONS",
+        continents: "CONTINENTS",
+        countless: "COUNTLESS",
+        stories: "STORIES",
+        selected: "Selected",
+        visited: "Visited",
+        route: "Travel Route",
+        googleMap: "GOOGLE MAP",
+        explore: "Explore a place I've visited",
+        toronto: "Toronto, Canada",
+        regions: [
+          ["China", "Shanghai · Beijing · Zhengzhou · Suzhou · Hangzhou · Hong Kong · Macau · Taiwan · Wuxi · Nanjing · Ningbo"],
+          ["Canada", "Toronto · Vancouver · Montreal · Ottawa · Banff · Quebec City · Calgary"],
+          ["Japan", "Osaka · Tokyo · Nagoya"],
+          ["South Korea", "Seoul · Jeju Island"],
+          ["United States", "San Jose · San Francisco"],
+          ["Thailand", "Bangkok"]
+        ]
+      },
+
+      education: [
+        "Bachelor of Computer Engineering · Minors in Artificial Intelligence and Business",
+        "Fourth year · Expected graduation: June 2027"
+      ],
+
+      resume: [
+        "Computer Engineering student with experience in design verification, software development, FPGA systems, and data analysis. See the sections above for selected work, projects, and technical skills.",
+        "Request my full resume by email."
+      ],
+
+      loadMore: "Load More"
+    },
+
+
+    zh: {
+      nav: [
+        "关于我", "工作经历", "项目经历", "技术技能",
+        "旅行足迹", "教育背景", "联系方式", "简历"
+      ],
+
+      titles: {
+        about: "关于我",
+        experience: "工作经历",
+        projects: "项目经历",
+        skills: "技术技能",
+        places: "旅行足迹",
+        education: "教育背景",
+        resume: "简历",
+        contact: "联系方式"
+      },
+
+      heroDescription:
+        "多伦多大学计算机工程专业四年级学生。我喜欢软件开发、硬件设计以及高尔夫运动。",
+      readMore: "了解更多",
+      contactMe: "联系我",
+
+      about: [
+        "我是 Tim，目前是多伦多大学计算机工程专业四年级学生，同时辅修人工智能和商业。我的兴趣包括软件开发、数字设计验证、数据分析，以及开发能够提升工作效率的工具。",
+        "在工程学习之外，我喜欢打高尔夫球。我预计于 2027 年 6 月毕业。"
+      ],
+
+      experience: {
+        roles: [
+          "设计验证实习生",
+          "Web 应用开发工程师"
+        ],
+        bullets: [
+          [
+            "参与三个芯片项目的门级仿真签核与流片工作。",
+            "负责 UVM 测试用例，并使用 SystemVerilog、Verilog、Python、C 和 Shell 脚本开发新的测试。",
+            "自动化回归测试监控、日志分析和波形检查流程，提高验证效率。"
+          ],
+          [
+            "协助将医学教学内容从网站迁移到应用程序。",
+            "通过重新组织数据结构提升搜索性能，并通过可用性测试发现界面问题。"
+          ]
+        ],
+        footers: [
+          "2025年5月 – 2026年8月 · 加拿大安大略省万锦市",
+          "2023年3月 – 2023年9月 · 加拿大安大略省多伦多"
+        ]
+      },
+
+      skills: [
+        "编程语言与数据库",
+        "硬件与开发工具",
+        "数据与设计"
+      ],
+
+      travel: {
+        eyebrow: "我的旅行足迹",
+        heading: "不断扩展的亚洲与北美旅行足迹。",
+        description:
+          "从东亚到加拿大，再到加利福尼亚——记录我旅途中到访过的地方。",
+        places: "地点",
+        countries: "国家 / 地区",
+        continents: "大洲",
+        countless: "无数",
+        stories: "故事",
+        selected: "已选择",
+        visited: "已到访",
+        route: "旅行路线",
+        googleMap: "谷歌地图",
+        explore: "探索我曾到访的地方",
+        toronto: "加拿大，多伦多",
+        regions: [
+          ["中国", "上海 · 北京 · 郑州 · 苏州 · 杭州 · 香港 · 澳门 · 台北 · 无锡 · 南京 · 宁波"],
+          ["加拿大", "多伦多 · 温哥华 · 蒙特利尔 · 渥太华 · 班夫 · 魁北克市 · 卡尔加里"],
+          ["日本", "大阪 · 东京 · 名古屋"],
+          ["韩国", "首尔 · 济州岛"],
+          ["美国", "圣何塞 · 旧金山"],
+          ["泰国", "曼谷"]
+        ]
+      },
+
+      education: [
+        "计算机工程学士 · 辅修人工智能与商业",
+        "四年级 · 预计毕业时间：2027年6月"
+      ],
+
+      resume: [
+        "计算机工程专业学生，拥有设计验证、软件开发、FPGA 系统和数据分析经验。可查看以上工作经历、项目经历和技术技能了解更多信息。",
+        "通过电子邮件向我索取完整简历。"
+      ],
+
+      loadMore: "加载更多"
+    }
+  };
+
+
+  function setText(selector, value) {
+    const element = document.querySelector(selector);
+    if (element && value !== undefined) {
+      element.textContent = value;
+    }
+  }
+
+
+  function setLanguage(language) {
+
+    window.currentLanguage = language;
+
+    const t = translations[language];
+
+    /* ---------- Desktop navigation ---------- */
+
+    const desktopNav = document.querySelector("nav.hide-on-small-only");
+
+    if (desktopNav) {
+      const links = desktopNav.querySelectorAll("li.bold a span");
+
+      links.forEach(function(link, index) {
+        if (t.nav[index]) {
+          link.textContent = t.nav[index];
+        }
+      });
+    }
+
+
+    /* ---------- Mobile navigation ---------- */
+
+    const mobileNav = document.querySelector("#slide-out");
+
+    if (mobileNav) {
+      const links = mobileNav.querySelectorAll("li.bold a span");
+
+      links.forEach(function(link, index) {
+        if (t.nav[index]) {
+          link.textContent = t.nav[index];
+        }
+      });
+    }
+
+
+    /* ---------- Section titles ---------- */
+
+    Object.keys(t.titles).forEach(function(sectionId) {
+      setText(
+        "#" + sectionId + " > h3.page-title",
+        t.titles[sectionId]
+      );
+    });
+
+
+    /* ---------- Hero ---------- */
+
+    setText("#intro .caption > h5:last-child", t.heroDescription);
+    setText("#intro .readme", t.readMore);
+    setText("#intro .contactme", t.contactMe);
+
+
+    /* ---------- About ---------- */
+
+    const aboutParagraphs =
+      document.querySelectorAll("#about .container p");
+
+    if (aboutParagraphs[0]) {
+      aboutParagraphs[0].textContent = t.about[0];
+    }
+
+    if (aboutParagraphs[1]) {
+      aboutParagraphs[1].textContent = t.about[1];
+    }
+
+
+    /* ---------- Experience ---------- */
+
+    const experienceCards =
+      document.querySelectorAll("#experience .experience-card");
+
+    experienceCards.forEach(function(card, cardIndex) {
+
+      const role = card.querySelector(".role");
+
+      if (role && t.experience.roles[cardIndex]) {
+        role.textContent = t.experience.roles[cardIndex];
+      }
+
+      const bullets =
+        card.querySelectorAll("ul.browser-default li");
+
+      bullets.forEach(function(bullet, bulletIndex) {
+        if (
+          t.experience.bullets[cardIndex] &&
+          t.experience.bullets[cardIndex][bulletIndex]
+        ) {
+          bullet.textContent =
+            t.experience.bullets[cardIndex][bulletIndex];
+        }
+      });
+
+      const footer =
+        card.querySelector(".experience-footer span");
+
+      if (footer && t.experience.footers[cardIndex]) {
+        footer.textContent =
+          t.experience.footers[cardIndex];
+      }
+    });
+
+
+    /* ---------- Skills ---------- */
+
+    const skillTitles =
+      document.querySelectorAll("#skills .skills-card h4");
+
+    skillTitles.forEach(function(title, index) {
+      if (t.skills[index]) {
+        title.textContent = t.skills[index];
+      }
+    });
+
+
+    /* ---------- Travel ---------- */
+
+    setText(
+      "#places .travel-heading > .travel-eyebrow",
+      t.travel.eyebrow
+    );
+
+    setText(
+      "#places .travel-heading-copy h4",
+      t.travel.heading
+    );
+
+    setText(
+      "#places .travel-heading-copy p",
+      t.travel.description
+    );
+
+
+    const stats =
+      document.querySelectorAll("#places .travel-stats > div");
+
+    if (stats[0]) {
+      const span = stats[0].querySelector("span");
+      if (span) span.textContent = t.travel.places;
+    }
+
+    if (stats[1]) {
+      const span = stats[1].querySelector("span");
+      if (span) span.textContent = t.travel.countries;
+    }
+
+    if (stats[2]) {
+      const span = stats[2].querySelector("span");
+      if (span) span.textContent = t.travel.continents;
+    }
+
+    if (stats[3]) {
+      const strong = stats[3].querySelector("strong");
+      const span = stats[3].querySelector("span");
+
+      if (strong) strong.textContent = t.travel.countless;
+      if (span) span.textContent = t.travel.stories;
+    }
+
+
+    const legendItems =
+      document.querySelectorAll("#places .map-legend span");
+
+    if (legendItems[0]) {
+      legendItems[0].lastChild.textContent =
+        t.travel.selected;
+    }
+
+    if (legendItems[1]) {
+      legendItems[1].lastChild.textContent =
+        t.travel.visited;
+    }
+
+    if (legendItems[2]) {
+      legendItems[2].lastChild.textContent =
+        t.travel.route;
+    }
+
+
+    const regionCards = document.querySelectorAll("#places .travel-region");
+    regionCards.forEach(function(card, index) {
+      const region = t.travel.regions && t.travel.regions[index];
+      if (!region) return;
+
+      const heading = card.querySelector("h5");
+      const count = heading ? heading.querySelector("em") : null;
+      const placesText = card.querySelector("p");
+
+      if (heading) {
+        const countText = count ? count.textContent : "";
+        heading.textContent = region[0] + " ";
+        const em = document.createElement("em");
+        em.textContent = countText;
+        heading.appendChild(em);
+      }
+
+      if (placesText) placesText.textContent = region[1];
+    });
+
+    setText(
+      "#places .google-map-heading .travel-eyebrow",
+      t.travel.googleMap
+    );
+
+    setText(
+      "#places .google-map-heading h4",
+      t.travel.explore
+    );
+
+    setText(
+      "#places .google-map-heading > p:last-child",
+      t.travel.toronto
+    );
+
+
+    /* ---------- Education ---------- */
+
+    const educationParagraphs =
+      document.querySelectorAll("#education .card-content > p");
+
+    if (educationParagraphs[0]) {
+      educationParagraphs[0].textContent =
+        t.education[0];
+    }
+
+    if (educationParagraphs[1]) {
+      educationParagraphs[1].textContent =
+        t.education[1];
+    }
+
+
+    /* ---------- Resume ---------- */
+
+    const resumeParagraphs =
+      document.querySelectorAll("#resume .container > p");
+
+    if (resumeParagraphs[0]) {
+      resumeParagraphs[0].textContent =
+        t.resume[0];
+    }
+
+    /*
+    * Keep the existing mailto link.
+    * Only change the text inside the link.
+    */
+    const resumeEmail =
+      document.querySelector("#resume a[href^='mailto:']");
+
+    if (resumeEmail) {
+      resumeEmail.textContent =
+        language === "zh"
+          ? "通过电子邮件向我索取完整简历"
+          : "Request my full resume by email";
+    }
+
+
+    /* ---------- Load More ---------- */
+
+    setText("#load-more-projects", t.loadMore);
+
+
+    /* ---------- Language button state ---------- */
+
+    document
+      .querySelectorAll(".lang-btn")
+      .forEach(function(button) {
+        button.classList.remove("active");
+      });
+
+    const activeButton =
+      document.getElementById(
+        language === "zh" ? "lang-zh" : "lang-en"
+      );
+
+    if (activeButton) {
+      activeButton.classList.add("active");
+    }
+
+    if (typeof displayProjects === "function") {
+      displayProjects();
+    }
+
+    if (typeof window.refreshSelectedTravelPlace === "function") {
+      window.refreshSelectedTravelPlace();
+    }
+  }
+
+
+  /* Language selector events */
+
+  document
+    .getElementById("lang-en")
+    .addEventListener("click", function() {
+      setLanguage("en");
+    });
+
+
+  document
+    .getElementById("lang-zh")
+    .addEventListener("click", function() {
+      setLanguage("zh");
+    });
+
+
+  /* Default language is always English when the page loads */
+  setLanguage("en");
+  </script>
+
+
+<!-- Activity 5: Dynamic Project Content -->
+<script>
+  // Store all project information in a JavaScript array.
+
+  const projects = [
+  {
+    title: {
+      en: "FPGA Klotski Game",
+      zh: "FPGA 华容道游戏"
+    },
+    image: "assets/img/project-AI.jpg",
+    alt: "Technology illustration for FPGA Klotski Game",
+    description: {
+      en: "Built a pathfinding Klotski game using an FPGA system with Nios II and ARMv7. Connected VGA output and PS/2 keyboard and mouse input.",
+      zh: "使用 FPGA 系统、Nios II 和 ARMv7 开发路径搜索华容道游戏，并连接 VGA 显示输出以及 PS/2 键盘和鼠标输入。"
+    },
+    meta: {
+      en: "Intel + University of Toronto · Sep 2023 – Apr 2024",
+      zh: "Intel + 多伦多大学 · 2023年9月 – 2024年4月"
+    },
+    link: ""
+  },
+
+  {
+    title: {
+      en: "Global Washroom Locator",
+      zh: "全球公共洗手间定位器"
+    },
+    image: "assets/img/project-python-django2.jpg",
+    alt: "Web application illustration for Global Washroom Locator",
+    description: {
+      en: "Led a three-person team to create a geographic application in C++ using OpenStreetMap data, GTK, EZGL, and libcurl.",
+      zh: "带领三人团队使用 C++ 开发地理信息应用，并结合 OpenStreetMap 数据、GTK、EZGL 和 libcurl 实现地图与网络功能。"
+    },
+    meta: {
+      en: "Google + University of Toronto · Jan – Jun 2024",
+      zh: "Google + 多伦多大学 · 2024年1月 – 2024年6月"
+    },
+    link: ""
+  },
+
+  {
+    title: {
+      en: "Toronto Population Analysis",
+      zh: "多伦多人口数据分析"
+    },
+    image: "assets/img/project-python-Data-Science_Watermarked.webp",
+    alt: "Data analysis illustration for Toronto Population Analysis",
+    description: {
+      en: "Analyzed population data with MySQL on Google Cloud, filtered CSV data, and visualized annual growth in a MATLAB and SQL dashboard.",
+      zh: "在 Google Cloud 上使用 MySQL 分析人口数据，对 CSV 数据进行筛选，并通过 MATLAB 和 SQL 仪表板可视化年度人口增长。"
+    },
+    meta: {
+      en: "Toronto + Ontario Open Data · Nov 2022 – Mar 2023",
+      zh: "多伦多 + 安大略省开放数据 · 2022年11月 – 2023年3月"
+    },
+    link: ""
+  },
+
+  {
+    title: {
+      en: "D&D DM Player Helper",
+      zh: "D&D 地下城主与玩家助手"
+    },
+    image: "assets/img/dnd.jpg",
+    alt: "Dungeons and Dragons DM and player helper project",
+    description: {
+      en: "A Dungeons & Dragons helper project designed to support Dungeon Masters and players during tabletop gameplay.",
+      zh: "一个为《龙与地下城》桌游设计的辅助工具，为地下城主和玩家在游戏过程中提供支持。"
+    },
+    meta: {
+      en: "Personal Project",
+      zh: "个人项目"
+    },
+    link: "https://github.com/timling234/dnd-dm-player-helper"
+  }
+];
+
+  // Activity 5 requires exactly two projects to be shown initially.
+  let visibleProjectCount = 2;
+
+  function displayProjects() {
+    const projectContainer = document.getElementById("project-container");
+    const loadMoreButton = document.getElementById("load-more-projects");
+    const language = window.currentLanguage || "en";
+
+    // Clear the current cards before rebuilding the project list.
+    projectContainer.innerHTML = "";
+
+    // Only display projects up to visibleProjectCount.
+    const projectsToDisplay = projects.slice(0, visibleProjectCount);
+
+    projectsToDisplay.forEach(function(project) {
+      const projectColumn = document.createElement("div");
+      projectColumn.className = "col s12 m6 l4";
+
+      const projectTitle = project.title[language];
+      const projectDescription = project.description[language];
+      const projectMeta = project.meta[language];
+
+      const titleHTML = project.link
+        ? `<a href="${project.link}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="teal-text hoverline">
+              ${projectTitle}
+          </a>`
+        : projectTitle;
+
+      projectColumn.innerHTML = `
+        <div class="card project-card">
+          <div class="card-image">
+            <img src="${project.image}" alt="${project.alt}">
+          </div>
+
+          <div class="card-content">
+            <span class="card-title teal-text">
+              ${titleHTML}
+            </span>
+
+            <p>${projectDescription}</p>
+          </div>
+
+          <div class="card-action project-meta">
+            ${projectMeta}
+          </div>
+        </div>
+      `;
+
+      projectContainer.appendChild(projectColumn);
+    });
+
+    // Hide the Load More button once every project is visible.
+    if (visibleProjectCount >= projects.length) {
+      loadMoreButton.style.display = "none";
+    }
+  }
+
+  const language =
+  window.currentLanguage || "en";
+  
+  function loadMoreProjects() {
+    // Display all remaining projects.
+    visibleProjectCount = projects.length;
+
+    // Re-render the project cards.
+    displayProjects();
+  }
+
+  // Connect the button to the Load More function.
+  document
+    .getElementById("load-more-projects")
+    .addEventListener("click", loadMoreProjects);
+
+  // Initially render only the first two projects.
+  displayProjects();
+</script>
+
 
 </body>
 
