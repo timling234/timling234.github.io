@@ -1269,408 +1269,221 @@ ul#slide-out li:not(.logo) a:hover span {
 }
 
 
-/* =========================================================
-   Activity 4 — Places Travelled / Travel Footprint
-   Ctrip-inspired information architecture with original styling
-   ========================================================= */
 
-.travel-container {
-  width: 88%;
-  max-width: 1180px;
+/* Places Travelled — reference layout */
+#places { background: #f6faff; color: #11243f; padding: 0 0 54px; scroll-margin-top: 64px; }
+#places > h3.page-title { position: static; top: auto; margin: 0 0 24px; }
+#places .travel-container { position: relative; top: auto; width: calc(100% - 54px); max-width: none; margin: 0 auto; }
+#places .travel-heading { margin: 0 12px 20px; }
+#places .travel-eyebrow { margin: 0 0 6px; color: #245bd8; letter-spacing: .09em; font-size: 13px; font-weight: 500; }
+#places .travel-summary { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+#places .travel-heading-copy h4 { margin: 0 0 2px; font-size: clamp(18px, 2vw, 25px); font-weight: 400; color: #455c7b; }
+#places .travel-heading-copy p { margin: 0; color: #607391; font-size: clamp(14px, 1.3vw, 18px); line-height: 1.45; }
+#places .travel-stats { display: flex; flex: none; align-items: flex-end; }
+#places .travel-stats > div { min-width: 106px; text-align: center; padding: 0 13px; border-right: 1px solid #d5deeb; }
+#places .travel-stats > div:last-child { border: 0; }
+#places .travel-stats strong { display: block; color: #245bd8; font-size: 27px; font-weight: 600; line-height: 1.15; }
+#places .travel-stats span { display: block; color: #5d6e8b; font-size: 11px; white-space: nowrap; }
+#places .travel-stories i { display: block; color: #245bd8; font-size: 33px; line-height: 26px; }
+#places .travel-stories strong { font-size: 13px; line-height: 22px; }
+#places .leaflet-footprint { position: relative; height: clamp(420px, 39vw, 510px); overflow: hidden; border: 2px solid #c6d9ef; border-radius: 6px; background: #091b31; box-shadow: 0 10px 25px #2a52731a; }
+#places .travel-leaflet-map { position: absolute; inset: 0; z-index: 1; background: #091b31; }
+#travelLeafletMap.leaflet-container { background: #091b31; }
+#travelLeafletMap .leaflet-tile-pane {
+  filter: grayscale(1) sepia(1) hue-rotate(175deg) saturate(2.2) brightness(.38) contrast(1.35);
+  opacity: .96;
 }
-
-.travel-summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 30px;
-  margin: 14px 0 24px;
-}
-
-.travel-eyebrow {
-  margin: 0 0 7px;
-  color: #2563eb;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.travel-summary h4,
-.google-map-copy h4 {
-  margin: 0 0 8px;
-  color: #183153;
-  font-size: 27px;
-  font-weight: 400;
-}
-
-.travel-intro,
-.google-map-copy p:last-child {
-  margin: 0;
-  color: #64748b;
-}
-
-.travel-stats {
-  display: flex;
-  gap: 28px;
-}
-
-.travel-stats div {
-  min-width: 72px;
-  text-align: center;
-}
-
-.travel-stats strong {
-  display: block;
-  color: #1e3a8a;
-  font-size: 28px;
-  line-height: 1;
-}
-
-.travel-stats span {
-  display: block;
-  margin-top: 7px;
-  color: #64748b;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.footprint-card {
-  overflow: hidden;
-  border: 1px solid rgba(96, 165, 250, .18);
-  border-radius: 5px;
-  box-shadow: 0 14px 36px rgba(15, 42, 76, .13);
-}
-
-.footprint-map {
-  position: relative;
-  min-height: 470px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 72% 25%, rgba(37, 99, 235, .16), transparent 25%),
-    radial-gradient(circle at 22% 45%, rgba(14, 165, 233, .10), transparent 27%),
-    linear-gradient(135deg, #071426 0%, #0b2340 52%, #0a1a30 100%);
-}
-
-.map-grid {
+#travelLeafletMap::after {
+  content: '';
   position: absolute;
   inset: 0;
-  opacity: .28;
-  background-image:
-    linear-gradient(rgba(148, 197, 255, .09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 197, 255, .09) 1px, transparent 1px);
-  background-size: 36px 36px;
-}
-
-.world-silhouette {
-  position: absolute;
-  inset: 5% 2% 4%;
-  width: 96%;
-  height: 91%;
-  filter: drop-shadow(0 0 18px rgba(59, 130, 246, .08));
-}
-
-.world-silhouette path {
-  fill: rgba(81, 126, 163, .31);
-  stroke: rgba(147, 197, 253, .22);
-  stroke-width: 1.5;
-}
-
-.map-marker {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  cursor: default;
-  z-index: 5;
-}
-
-.marker-dot {
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: #93c5fd;
-  box-shadow: 0 0 12px #60a5fa, 0 0 24px rgba(96, 165, 250, .55);
-}
-
-.marker-pulse {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(147, 197, 253, .9);
-  border-radius: 50%;
-  animation: travelPulse 2.2s ease-out infinite;
-}
-
-@keyframes travelPulse {
-  0% { transform: scale(.55); opacity: .95; }
-  75%, 100% { transform: scale(2.5); opacity: 0; }
-}
-
-.marker-label {
-  position: absolute;
-  left: 20px;
-  top: -10px;
-  min-width: 94px;
-  padding: 7px 10px;
-  text-align: left;
-  white-space: nowrap;
-  border: 1px solid rgba(147, 197, 253, .18);
-  border-radius: 4px;
-  background: rgba(6, 20, 38, .84);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, .18);
-  backdrop-filter: blur(7px);
-}
-
-.marker-label b {
-  display: block;
-  color: #eaf4ff;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.marker-label small {
-  color: #8ca8c5;
-  font-size: 10px;
-}
-
-.vancouver { left: 14.7%; top: 29%; }
-.toronto   { left: 24.2%; top: 31.5%; }
-.beijing   { left: 79.7%; top: 33.5%; }
-.shanghai  { left: 81.5%; top: 39%; }
-
-.shanghai .marker-label {
-  top: 12px;
-}
-
-.route {
-  position: absolute;
-  height: 1px;
-  z-index: 3;
-  opacity: .45;
-  border-top: 1px dashed rgba(96, 165, 250, .65);
-  transform-origin: left center;
-}
-
-.route-canada {
-  left: 16%;
-  top: 31%;
-  width: 9%;
-  transform: rotate(8deg);
-}
-
-.route-china {
-  left: 80.5%;
-  top: 36%;
-  width: 4.3%;
-  transform: rotate(58deg);
-}
-
-.map-caption {
-  position: absolute;
-  left: 25px;
-  bottom: 21px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #8ca8c5;
-  font-size: 11px;
-  letter-spacing: 1.3px;
-  text-transform: uppercase;
-}
-
-.caption-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #60a5fa;
-  box-shadow: 0 0 10px #60a5fa;
-}
-
-.travel-city-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 13px;
-  margin: 16px 0 28px;
-}
-
-.travel-city {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-height: 84px;
-  padding: 15px 17px;
-  border: 1px solid rgba(51, 78, 104, .10);
-  background: rgba(255, 255, 255, .80);
-  box-shadow: 0 5px 14px rgba(15, 42, 76, .05);
-}
-
-.city-index {
-  color: #93a9bd;
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-
-.travel-city h5 {
-  margin: 0 0 3px;
-  color: #294866;
-  font-size: 17px;
-  font-weight: 400;
-}
-
-.travel-city p {
-  margin: 0;
-  color: #7b8fa3;
-  font-size: 12px;
-}
-
-.google-map-card {
-  display: grid;
-  grid-template-columns: minmax(260px, .65fr) 1.35fr;
-  overflow: hidden;
-  margin-bottom: 10px;
-  border: 1px solid rgba(51, 78, 104, .10);
-  background: rgba(255, 255, 255, .84);
-  box-shadow: 0 8px 24px rgba(15, 42, 76, .075);
-}
-
-.google-map-copy {
-  padding: 31px;
-  align-self: center;
-}
-
-.google-map-card iframe {
-  width: 100%;
-  height: 330px;
-  border: 0;
-  filter: saturate(.78) contrast(.95);
-}
-
-@media (max-width: 992px) {
-  .travel-container { width: 92%; }
-  .travel-summary { align-items: flex-start; flex-direction: column; }
-  .travel-city-grid { grid-template-columns: repeat(2, 1fr); }
-  .footprint-map { min-height: 410px; }
-  .marker-label { display: none; }
-}
-
-@media (max-width: 600px) {
-  .travel-stats { width: 100%; justify-content: space-between; gap: 8px; }
-  .footprint-map { min-height: 310px; }
-  .travel-city-grid { grid-template-columns: 1fr 1fr; }
-  .google-map-card { grid-template-columns: 1fr; }
-  .google-map-card iframe { height: 280px; }
-  .google-map-copy { padding: 24px; }
-}
-
-
-/* =========================================================
-   Activity 4 expansion — 26-place footprint
-   ========================================================= */
-
-.travel-region-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 13px;
-  margin: 16px 0 28px;
-}
-
-.travel-region {
-  position: relative;
-  min-height: 118px;
-  padding: 20px 22px 18px 58px;
-  border: 1px solid rgba(51, 78, 104, .10);
-  background: rgba(255, 255, 255, .80);
-  box-shadow: 0 5px 14px rgba(15, 42, 76, .05);
-}
-
-.region-number {
-  position: absolute;
-  left: 20px;
-  top: 23px;
-  color: #93a9bd;
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-
-.travel-region h5 {
-  margin: 0 0 9px;
-  color: #294866;
-  font-size: 18px;
-  font-weight: 400;
-}
-
-.travel-region p {
-  margin: 0;
-  color: #64748b;
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-/* Dense-map mode: labels appear on hover/focus so East Asia stays readable. */
-.footprint-map .marker-label {
-  opacity: 0;
+  z-index: 350;
   pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity .16s ease, transform .16s ease;
-  z-index: 20;
+  background: rgba(5, 25, 52, 0.28);
+  mix-blend-mode: color;
+}
+#travelLeafletMap::before { content: ''; position: absolute; inset: 0; z-index: 351; pointer-events: none; background: linear-gradient(90deg,#74a9e50b 1px,transparent 1px),linear-gradient(#74a9e50b 1px,transparent 1px); background-size: 34px 34px; }
+#travelLeafletMap .leaflet-overlay-pane, #travelLeafletMap .leaflet-marker-pane, #travelLeafletMap .leaflet-tooltip-pane, #travelLeafletMap .leaflet-control-container { z-index: 500; }
+#travelLeafletMap .leaflet-control-zoom { margin: 16px; border: 1px solid #537da9; box-shadow: none; }
+#travelLeafletMap .leaflet-control-zoom a { color: white; background: #0a1f36; border-bottom-color: #537da9; }
+#travelLeafletMap .leaflet-control-attribution { color: #a9c4df; background: #0b1d31aa; font-size: 9px; }
+#travelLeafletMap .leaflet-control-attribution a { color: #a9c4df; }
+#places .travel-marker-shell { background: none; border: 0; }
+#places .leaflet-marker-dot { position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; transform: translate(-50%,-50%); border: 1px solid #dcecff; border-radius: 50%; background: #9ec8ff; box-shadow: 0 0 7px #80baff; }
+#places .leaflet-marker-dot.is-selected { width: 15px; height: 15px; border-color: #fff1af; background: #ffda70; box-shadow: 0 0 8px #ffdd75,0 0 20px #ffcf5e; }
+#places .leaflet-marker-pulse { position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; transform: translate(-50%,-50%); border: 1px solid #9ec8ff80; border-radius: 50%; animation: travel-pulse 2.5s ease-out infinite; }
+@keyframes travel-pulse { from { transform: translate(-50%,-50%) scale(.7); opacity: .6; } to { transform: translate(-50%,-50%) scale(2); opacity: 0; } }
+#places .travel-map-tooltip { color: white; background: #0a1f36; border: 1px solid #517daf; box-shadow: none; }
+#places .map-legend { position: absolute; z-index: 850; left: 20px; bottom: 16px; display: flex; gap: 30px; align-items: center; color: #d5e4f7; font-size: 12px; text-shadow: 0 1px 3px #081a2e; }
+#places .map-legend span { display: inline-flex; gap: 8px; align-items: center; }
+#places .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+#places .selected-dot { background: #ffda70; box-shadow: 0 0 12px #ffda70; }
+#places .visited-dot { background: #b8d8ff; box-shadow: 0 0 8px #8abaff; }
+#places .legend-route { width: 35px; height: 0; border-top: 1px solid #a2c9f5; border-radius: 0; display: inline-block; }
+#places .leaflet-detail { position: absolute; z-index: 900; width: 232px; max-height: calc(100% - 35px); box-sizing: border-box; overflow: auto; border: 1px solid #5e90c1; border-radius: 9px; background: #0d2038ef; color: #eaf3ff; box-shadow: 0 13px 30px #0006; }
+#places .leaflet-detail:not(.open) { display: none; }
+#places .place-photo-wrap { width: 100%; aspect-ratio: 16 / 9; background: #153450; overflow: hidden; }
+#places .place-photo-wrap.photo-missing { background: linear-gradient(135deg, #244a73, #0a2038); }
+#places .place-photo-wrap.photo-missing img { display: none; }
+#places .place-detail-image { width: 100%; height: 100%; display: block; object-fit: cover; }
+#places .detail-content { padding: 10px 12px 12px; }
+#places .detail-title-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+#places .detail-title-row h4 { margin: 0; color: white; font-size: 17px; line-height: 1.3; font-weight: 600; }
+#places .detail-title-row > span { color: #ccdcf0; font-size: 12px; white-space: nowrap; }
+#places .detail-content p { margin: 6px 0 8px; color: #d5e2f1; font-size: 12px; line-height: 1.5; }
+#places .detail-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+#places .detail-tags span { color: #e1ecfa; padding: 2px 5px; border: 1px solid #7197c0; border-radius: 10px; font-size: 9px; }
+#places .detail-close { position: absolute; z-index: 2; right: 7px; top: 7px; width: 24px; height: 24px; border: 0; border-radius: 50%; background: #0b213dc9; color: white; font-size: 19px; line-height: 20px; cursor: pointer; }
+#places .travel-region-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-top: 18px; }
+#places .travel-region { display: grid; grid-template-columns: 28px minmax(0,1fr) 14px; gap: 12px; min-height: 112px; margin: 0; padding: 20px 22px; border: 1px solid #e6edf7; border-radius: 4px; background: white; box-shadow: 0 5px 18px #1a46760a; }
+#places .region-number { color: #667b9c; font-size: 14px; }
+#places .travel-region h5 { margin: 0 0 7px; color: #13243f; font-size: 19px; font-weight: 400; }
+#places .travel-region h5 em { color: #245bd8; font-size: 15px; font-style: normal; }
+#places .travel-region p { margin: 0; color: #5e7190; font-size: 14px; line-height: 1.5; }
+#places .region-arrow { color: #3775ec; font-size: 30px; font-weight: 200; line-height: 20px; }
+@media (max-width: 1100px) { #places .travel-summary { align-items: start; flex-direction: column; } #places .travel-stats { width: 100%; justify-content: space-between; } }
+@media (max-width: 992px) { #places { padding-top: 64px; } }
+@media (max-width: 700px) { #places .travel-container { width: calc(100% - 28px); } #places .travel-heading { margin: 0 2px 16px; } #places .travel-heading h3 { font-size: 29px; } #places .travel-stats { overflow-x: auto; } #places .travel-stats > div { min-width: 88px; padding: 0 8px; } #places .travel-region-grid { grid-template-columns: 1fr; } #places .leaflet-footprint { height: 440px; } #places .leaflet-detail { width: 205px; } #places .map-legend { gap: 12px; left: 10px; font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { #places .leaflet-marker-pulse { animation: none; } }
+
+
+/* Final Places Travelled map color correction: deep navy */
+#places .leaflet-footprint,
+#places .travel-leaflet-map,
+#travelLeafletMap.leaflet-container {
+  background: #07182d;
 }
 
-.footprint-map .map-marker:hover .marker-label,
-.footprint-map .map-marker:focus .marker-label {
-  opacity: 1;
-  transform: translateY(0);
+
+/* =========================================================
+   Places Travelled — FINAL navy map correction
+   ========================================================= */
+
+#places .leaflet-footprint,
+#places .travel-leaflet-map,
+#travelLeafletMap.leaflet-container {
+  background: #061426 !important;
 }
 
-/* North America */
-.vancouver    { left: 14.5%; top: 29.0%; }
-.calgary      { left: 16.8%; top: 28.2%; }
-.banff        { left: 16.0%; top: 29.5%; }
-.toronto      { left: 24.2%; top: 31.8%; }
-.ottawa       { left: 25.3%; top: 30.4%; }
-.montreal     { left: 26.2%; top: 30.0%; }
-.quebec       { left: 27.2%; top: 28.7%; }
-.sanfrancisco { left: 15.3%; top: 39.2%; }
-.sanjose      { left: 15.6%; top: 40.5%; }
-
-/* China / East Asia */
-.beijing   { left: 79.3%; top: 33.2%; }
-.zhengzhou { left: 78.4%; top: 37.0%; }
-.nanjing   { left: 79.8%; top: 38.6%; }
-.wuxi      { left: 80.3%; top: 39.0%; }
-.suzhou    { left: 80.7%; top: 39.2%; }
-.shanghai  { left: 81.2%; top: 39.3%; }
-.hangzhou  { left: 80.8%; top: 40.4%; }
-.ningbo    { left: 81.4%; top: 40.5%; }
-.hongkong  { left: 79.5%; top: 44.6%; }
-.macau     { left: 79.0%; top: 44.8%; }
-.taiwan    { left: 82.0%; top: 43.0%; }
-
-.seoul     { left: 83.1%; top: 35.4%; }
-.jeju      { left: 82.5%; top: 38.1%; }
-.tokyo     { left: 87.3%; top: 38.2%; }
-.nagoya    { left: 85.9%; top: 39.3%; }
-.osaka     { left: 85.1%; top: 40.0%; }
-.bangkok   { left: 77.4%; top: 52.5%; }
-
-/* Make dense markers slightly smaller while retaining the pulse effect. */
-.footprint-map .map-marker {
-  width: 14px;
-  height: 14px;
+/* Convert the standard OSM tiles to a muted steel/navy base. */
+#travelLeafletMap .leaflet-tile-pane {
+  filter: grayscale(1) brightness(.42) contrast(1.45) sepia(.22) hue-rotate(165deg) saturate(1.35) !important;
+  opacity: .88 !important;
 }
 
-.footprint-map .marker-dot {
-  inset: 3px;
+/* Deep blue wash removes the green/teal cast. */
+#travelLeafletMap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 350;
+  pointer-events: none;
+  background: rgba(7, 30, 61, .52) !important;
+  mix-blend-mode: color !important;
 }
 
-@media (max-width: 600px) {
-  .travel-region-grid {
-    grid-template-columns: 1fr;
+/* Subtle technical grid, matching the reference image. */
+#travelLeafletMap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 351;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(91, 151, 220, .055) 1px, transparent 1px),
+    linear-gradient(rgba(91, 151, 220, .055) 1px, transparent 1px) !important;
+  background-size: 34px 34px !important;
+}
+
+/* Activity 4 — Google Maps embed */
+#places .google-map-card {
+  margin-top: 28px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2eaf4;
+  border-radius: 6px;
+  box-shadow: 0 7px 22px rgba(5, 17, 31, .07);
+}
+
+#places .google-map-heading {
+  margin-bottom: 16px;
+}
+
+#places .google-map-heading .travel-eyebrow {
+  margin-bottom: 5px;
+}
+
+#places .google-map-heading h4 {
+  margin: 0 0 4px;
+  color: #11243f;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+#places .google-map-heading > p:last-child {
+  margin: 0;
+  color: #607391;
+  font-size: 14px;
+}
+
+#places .google-map-frame {
+  overflow: hidden;
+  border: 1px solid #c6d9ef;
+  border-radius: 6px;
+  background: #061426;
+}
+
+#places .google-map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+}
+
+@media (max-width: 700px) {
+  #places .google-map-card {
+    padding: 14px;
   }
-  .travel-region {
-    min-height: 100px;
+
+  #places .google-map-frame iframe {
+    height: 340px;
   }
 }
 
+
+/* =========================================================
+   Places Travelled — GeoJSON navy world map
+   ========================================================= */
+
+#places .leaflet-footprint,
+#places .travel-leaflet-map,
+#travelLeafletMap.leaflet-container {
+  background: #06182d !important;
+}
+
+/* OSM remains underneath only as subtle geographic texture. */
+#travelLeafletMap .leaflet-tile-pane {
+  filter: grayscale(1) brightness(.30) contrast(1.10) !important;
+  opacity: .12 !important;
+}
+
+/* Disable previous whole-map tint; GeoJSON now supplies land color. */
+#travelLeafletMap::after {
+  display: none !important;
+}
+
+/* Subtle reference-style technical grid. */
+#travelLeafletMap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 260;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(74, 139, 207, .055) 1px, transparent 1px),
+    linear-gradient(rgba(74, 139, 207, .055) 1px, transparent 1px) !important;
+  background-size: 34px 34px !important;
+}
+
+#travelLeafletMap .leaflet-land-pane {
+  pointer-events: none !important;
+}
